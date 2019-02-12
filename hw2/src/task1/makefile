@@ -1,9 +1,12 @@
 .PHONY: clean all
 
-all: stack exploit call_shellcode
+all: setup stack exploit call_shellcode
 
 clean:
 	rm stack exploit call_shellcode
+
+setup:
+	sudo sysctl -w kernel.randomize_va_space=0
 
 exploit: exploit.c
 	# No special flags for the exploit, this will produce the badfile
